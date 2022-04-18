@@ -50,16 +50,7 @@
     var counter = -1;
     round2 = true;
     var flag = false;
-    const unshuffled = ["Edited masked male faces/neutral/C_AM02",
-      "Edited masked male faces/neutral/C_AM04",
-      "Edited masked male faces/neutral/C_AM05",
-      "Edited masked male faces/neutral/C_AM06",
-      "Edited masked male faces/neutral/C_AM09",
-      "Edited masked female faces/neutral faces/C_AF01",
-      "Edited masked female faces/neutral faces/C_AF03",
-      "Edited masked female faces/neutral faces/C_AF05",
-      "Edited masked female faces/neutral faces/C_AF09",
-      "Edited masked female faces/neutral faces/C_AF11"]
+    const unshuffled = ["AM02", "AM04", "AM05", "AM06", "AM09", "AF01", "AF03", "AF05", "AF09", "AF11"]
 
     let face_path = unshuffled
       .map(value => ({ value, sort: Math.random() }))
@@ -70,7 +61,7 @@
       counter++;
       if (counter < 10) {
         document.getElementById("cross").style = "font-size: 5em; display:none;";
-        target = document.getElementById("imageDiv").src = "./img/" + face_path[counter] + "NES.png";
+        target = document.getElementById("imageDiv").src = "./img/masked faces/C_" + face_path[counter] + "NES.png";
         document.getElementById("imageDiv").style = "width:auto; height: 15cm; display: block;";
         setTimeout(displayCross, 5000) // 5sec
       }
@@ -82,11 +73,11 @@
         counter = -1
         setTimeout(displayCross, 5000)
       }
-      else{
+      else {
         document.getElementById("cross").style = "font-size: 5em; display:none;";
         document.getElementById("text").innerHTML = "This is the end of the memorisation task.\
        Please follow the other link provided by the experimenter to take part in the subsequent task."
-       document.getElementById("text").style = "font-size: 2em; display:flex; justify-content: center; flex-wrap: wrap; max-width: 500px;";
+        document.getElementById("text").style = "font-size: 2em; display:flex; justify-content: center; flex-wrap: wrap; max-width: 500px;";
       }
     }
     function displayCross() {
