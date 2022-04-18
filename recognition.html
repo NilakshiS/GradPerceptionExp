@@ -36,7 +36,7 @@
   align-items: center; height: 100vh;">
     <div id="responseForm" style="display: none;">
       <form id="response-form" method="post">
-        <input type="radio" name="emotion" value="happy" checked="checked" /> Happy <br>
+        <input type="radio" name="emotion" value="happy" /> Happy <br>
         <input type="radio" name="emotion" value="sad" /> Sad <br>
         <input type="radio" name="emotion" value="angry" /> Angry <br>
         <input type="submit" />
@@ -164,6 +164,16 @@
         correct: correct,
         familiar: familiarFace
       }
+      const inputs = document.getElementById("responseForm").querySelectorAll("input");
+
+    //Clear the inputs.
+      inputs.forEach(function (input) {
+        if (input.hasAttribute("checked") === true) {
+            input.checked = true;
+        } else {
+            input.checked = false;
+        }
+    });
       displayCross()
     }
 
