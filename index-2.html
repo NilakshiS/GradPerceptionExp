@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+<script src="https://kit.fontawesome.com/2d4e34f1b6.js" crossorigin="anonymous"></script>
+
+<body>
+
+  <!-- Add your site or application content here -->
+  <!-- <p>Hello world! This is HTML5 Boilerplate.</p> -->
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center; height: 100vh;">
+    <div id="text" style="font-size: 2em; display:flex; justify-content: center; flex-wrap: wrap; max-width: 500px;">
+      In this task, you will be presented with some (masked) faces. You are required to memorise them, as you will have
+      to recognise them in a subsequent task.<br><br>
+      <button onclick="displayCross()" id="button">Click me</button>
+    </div>
+    <div id="cross" style="font-size: 5em; display:none;">
+      +
+    </div>
+    <img id="imageDiv" src="./img/Edited masked male faces/neutral/C_AM02NES.png"
+      style="width:auto; height: 15cm; display: none;">
+  </div>
+  <div id="demo"></div>
+  <script>
+    var counter = -1;
+    round2 = true;
+    var flag = false;
+    const unshuffled = ["Edited masked male faces/neutral/C_AM02",
+      "Edited masked male faces/neutral/C_AM04",
+      "Edited masked male faces/neutral/C_AM05",
+      "Edited masked male faces/neutral/C_AM06",
+      "Edited masked male faces/neutral/C_AM09",
+      "Edited masked female faces/neutral faces/C_AF01",
+      "Edited masked female faces/neutral faces/C_AF03",
+      "Edited masked female faces/neutral faces/C_AF05",
+      "Edited masked female faces/neutral faces/C_AF09",
+      "Edited masked female faces/neutral faces/C_AF11"]
+
+    let face_path = unshuffled
+      .map(value => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value)
+
+    function displayImage() {
+      counter++;
+      if (counter < 10) {
+        document.getElementById("cross").style = "font-size: 5em; display:none;";
+        target = document.getElementById("imageDiv").src = "./img/" + face_path[counter] + "NES.png";
+        document.getElementById("imageDiv").style = "width:auto; height: 15cm; display: block;";
+        setTimeout(displayCross, 5000) // 5sec
+      }
+      else if (counter >= 10 && round2) {
+        document.getElementById("cross").style = "font-size: 2em; display:none;"
+        document.getElementById("text").innerHTML = "Get Ready for round 2!"
+        document.getElementById("text").style = "font-size: 5em;display:block;"
+        round2 = false
+        counter = -1
+        setTimeout(displayCross, 5000)
+      }
+      else{
+        document.getElementById("cross").style = "font-size: 5em; display:none;";
+        document.getElementById("text").innerHTML = "This is the end of the memorisation task.\
+       Please follow the other link provided by the experimenter to take part in the subsequent task."
+       document.getElementById("text").style = "font-size: 2em; display:flex; justify-content: center; flex-wrap: wrap; max-width: 500px;";
+      }
+    }
+    function displayCross() {
+      document.getElementById("text").style = "display:none";
+      document.getElementById("imageDiv").style = "width:auto; height: 15cm; display: none;";
+      document.getElementById("cross").style = "font-size: 5em; display:block;";
+      setTimeout(displayImage, 1000) // 1sec
+    }
+    // window.onload = function(){
+    //   displayCross();
+    // }
+  </script>
+
+</body>
+
+</html>
