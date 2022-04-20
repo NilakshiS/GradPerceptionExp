@@ -36,7 +36,7 @@
   align-items: center; height: 100vh;">
     <div id="responseForm" style="display: none;">
       <form id="response-form" method="post">
-        <input type="radio" name="emotion" value="happy" /> Happy <br>
+        <input type="radio" name="emotion" value="happy" required/> Happy <br>
         <input type="radio" name="emotion" value="sad" /> Sad <br>
         <input type="radio" name="emotion" value="angry" /> Angry <br>
         <input type="submit" />
@@ -146,6 +146,9 @@
       //log this input somewhere
       console.log(counter, face_path[counter], inputVal);
       var correct;
+      if(inputVal == undefined){
+        inputVal = "Input missing";
+      }
       if ((face_path[counter].includes("HAS") && inputVal == "happy") ||
         (face_path[counter].includes("ANS") && inputVal == "angry") ||
         (face_path[counter].includes("SAS") && inputVal == "sad")) {
@@ -193,7 +196,7 @@
 
     function displayImage() {
       counter++;
-      if (counter < 60) {
+      if (counter < 6) {
         document.getElementById("cross").style = "font-size: 5em; display:none;";
         document.getElementById("responseForm").style = "display:none";
         var target = document.getElementById("imageDiv").src = "./img/face stimuli/C_" + face_path[counter] + ".png";
@@ -205,7 +208,7 @@
         document.getElementById("responseForm").style = "display:none";
         document.getElementById("text").innerHTML = "This is the end of the experiment. Thank you for participating. Please exit the page."
         document.getElementById("text").style = "font-size: 2em; display:flex; justify-content: center; flex-wrap: wrap; max-width: 500px;";
-        var accuracy = parseFloat((totalCorrect / 60 * 100).toFixed(2));
+        var accuracy = parseFloat((totalCorrect / 6 * 100).toFixed(2));
         console.log(JSON.stringify(responses));
         push(ref(database, 'final-data'), {[username]:responses, "accuracy": accuracy});
       }
