@@ -199,7 +199,7 @@
       counter++;
       if (counter < 60) {
         document.getElementById("cross").style = "display:none;";
-        document.getElementById("responseForm").style = "none";
+        document.getElementById("responseForm").style = "display:none";
         var target = document.getElementById("imageDiv").src = "./img/face stimuli/C_" + face_path[counter] + ".png";
         document.getElementById("imageDiv").style = "width:auto; height: 15cm; display: block;";
         setTimeout(displayResponseForm, 1000) // 2.5sec
